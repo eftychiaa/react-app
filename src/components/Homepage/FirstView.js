@@ -20,7 +20,7 @@ const FirstView = () => {
     </div>
     <JumbotronCard/>
     
-    <div style={{padding:'20px 0px'}}>
+    <div style={{padding:'30px 50px'}}>
       <TableApp/>
 
     </div>

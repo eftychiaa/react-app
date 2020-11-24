@@ -6,3 +6,11 @@ text-transform: uppercase
 .btnTableLast{
     float: right;
 }
+
+.center{
+    text-align: center;
+}
+
+.marginLeft50{
+    margin-left: 50px;
+}

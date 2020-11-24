@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ButtonApp from './ButtonApp';
-import { Link } from "react-router-dom";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,12 +29,11 @@ const ButtonAppBar = () => {
           <Typography variant="h6" className={classes.title}>
             Code.Hub Dashboard
           </Typography>
-          <Link to="/test">
-          <ButtonApp msg="View all" color="primary"></ButtonApp>
-          </Link>
-          <Link to="/addNewCourse">
-         <ButtonApp msg="Add new course" color="primary"></ButtonApp>
-         </Link>
+          
+          <ButtonApp msg="View all" link="allCourses" color="primary"></ButtonApp>
+          
+         <ButtonApp msg="Add new course" link="addNewCourse" color="primary"></ButtonApp>
+         
         </Toolbar>
       </AppBar>
     </div>

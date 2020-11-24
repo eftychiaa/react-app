@@ -79,7 +79,7 @@ export default function TableApp() {
     <TableContainer className={classes.table} component={Paper} style={{pading:'40px 70px'}}>
     <caption><div>Last {courses.length} courses</div></caption>
       <Table className={classes.table} aria-label="customized table">
-      <caption><ButtonApp align="right" msg='View All'></ButtonApp></caption>
+      <caption><ButtonApp align="right" link="allCourses" msg='View All'></ButtonApp></caption>
         <TableHead>
           <TableRow>
             <StyledTableCell></StyledTableCell>
@@ -100,7 +100,7 @@ export default function TableApp() {
               <StyledTableCell align="right">{course.price.normal}€</StyledTableCell>
               <StyledTableCell align="right">{course.dates.start_date} - {course.dates.end_date}</StyledTableCell>
               <StyledTableCell align="right">
-                <ButtonApp msg="View Details"></ButtonApp>
+                <ButtonApp link="course" msg="View Details"></ButtonApp>
               </StyledTableCell>
               
             </StyledTableRow>
