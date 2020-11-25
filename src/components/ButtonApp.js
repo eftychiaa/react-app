@@ -1,28 +1,31 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(),
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     '& > *': {
+//       margin: theme.spacing(),
+//     },
+//   },
+// }));
 
-const ButtonApp = ({msg,color,link}) => {
-  const classes = useStyles();
+const ButtonApp = ({msg,color,link,variant}) => {
+  
 
 
   return (
-    <div className={classes.root}>
+    <div >
           <Link to={`/${link}`}>  
-      <Button variant="contained">{msg}</Button>
+      <Button variant={variant}>{msg}</Button>
        </Link>
     </div>
   );
 }
+
+// <Button href="#">Link</Button> <Button type="submit">Button</Button>{' '}
+
 
 export default ButtonApp;
 

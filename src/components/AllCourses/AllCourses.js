@@ -43,12 +43,27 @@ function AllCourses() {
     fetchData();
   }, []);
 
+  function formatDate (input) {
+    var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
+    if (!input || !input.match(pattern)) {
+      return null;
+    }
+    return input.replace(pattern, '$2/$3/$1');
+  };
+  
+if ((courseCard.length)>0) {
+    for(var i=0 ; i< courseCard.length; i++){
+      courseCard[i].dates.start_date =  formatDate(courseCard[i].dates.start_date);
+      courseCard[i].dates.end_date =  formatDate(courseCard[i].dates.end_date);
+    }
+   }
+
   return (
 
     <div>
         <h1>All Courses</h1>
         <div className="marginLeft50">
-        <GridList  cols={4} cellHeight={'auto'}>
+        <GridList  cols={3} cellHeight={'auto'} >
         {courseCard.map((courseCard) => (
           <div key={courseCard.id}>
           

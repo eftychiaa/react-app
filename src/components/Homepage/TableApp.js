@@ -33,12 +33,20 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 
+function formatDate (input) {
+  var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
+  if (!input || !input.match(pattern)) {
+    return null;
+  }
+  return input.replace(pattern, '$2/$3/$1');
+};
+
 
 
 
 const useStyles = makeStyles({
   table: {
-    width: 1000,
+    width: '100%',
   },
 });
 
@@ -64,6 +72,7 @@ export default function TableApp() {
       })
       .then(data => {
         setCourses(data);
+       // formatDate(data.dates.start_date);
         //setIsLoading(false);
       })
       .catch(error =>  {
@@ -75,19 +84,26 @@ export default function TableApp() {
     fetchData();
   }, []);
 
+   if ((courses.length)>0) {
+    for(var i=0 ; i< courses.length; i++){
+      courses[i].dates.start_date =  formatDate(courses[i].dates.start_date);
+      courses[i].dates.end_date =  formatDate(courses[i].dates.end_date);
+    }
+   }
+
   return (
     <TableContainer className={classes.table} component={Paper} style={{pading:'40px 70px'}}>
-    <caption><div>Last {courses.length} courses</div></caption>
+    {/* <caption><div>Last {courses.length} courses</div></caption> */}
       <Table className={classes.table} aria-label="customized table">
       <caption><ButtonApp align="right" link="allCourses" msg='View All'></ButtonApp></caption>
         <TableHead>
           <TableRow>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell align="right">Title</StyledTableCell>
-            <StyledTableCell align="right">Bookable</StyledTableCell>
-            <StyledTableCell align="right">Price</StyledTableCell>
-            <StyledTableCell align="right">Date</StyledTableCell>
-            <StyledTableCell align="right">Action</StyledTableCell>           
+            <StyledTableCell width='20'></StyledTableCell>
+            <StyledTableCell align="center">Title</StyledTableCell>
+            <StyledTableCell align="center">Bookable</StyledTableCell>
+            <StyledTableCell align="center">Price</StyledTableCell>
+            <StyledTableCell align="center">Date</StyledTableCell>
+            <StyledTableCell align="center">Action</StyledTableCell>           
           
           </TableRow>
         </TableHead>
@@ -95,12 +111,12 @@ export default function TableApp() {
           {courses.map((course) => (
             <StyledTableRow key={course.id}>
               <StyledTableCell component="th" scope="row"><InfoIcon/></StyledTableCell>
-              <StyledTableCell align="right">{course.title}</StyledTableCell>
-              <StyledTableCell align="right">{course.open && <CheckIcon/>}</StyledTableCell>
-              <StyledTableCell align="right">{course.price.normal}€</StyledTableCell>
-              <StyledTableCell align="right">{course.dates.start_date} - {course.dates.end_date}</StyledTableCell>
-              <StyledTableCell align="right">
-                <ButtonApp link="course" msg="View Details"></ButtonApp>
+              <StyledTableCell align="center">{course.title}</StyledTableCell>
+              <StyledTableCell align="center">{course.open && <CheckIcon/>}</StyledTableCell>
+              <StyledTableCell align="center">{course.price.normal}€</StyledTableCell>
+              <StyledTableCell align="center">{course.dates.start_date} - {course.dates.end_date}</StyledTableCell>
+              <StyledTableCell align="center">
+                <ButtonApp variant="primary" link={`courses/${course.id}`} msg="View Details" color="blue"></ButtonApp>
               </StyledTableCell>
               
             </StyledTableRow>

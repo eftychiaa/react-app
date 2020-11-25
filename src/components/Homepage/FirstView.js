@@ -5,25 +5,25 @@ import TableApp from "../Homepage/TableApp";
 
 
 
-const FirstView = () => {
+function FirstView  ()  {
  
 
   return (
       <div>
-    <div style={{padding:'20px 0px'}}>
-    <Jumbotron style={{ backgroundColor: '#D8EDFF', height: '200px' }}>
-      <Container fluid style={{padding:'20px'}}>
-        <h1 className="display-3">Welcome to Code.Hub Dashboard!</h1>
+    <div >
+    <Jumbotron style={{ backgroundColor: '#ccebff', height: '200px', marginTop:20 }}>
+      <Container fluid >
+        <h4 >Welcome to Code.Hub Dashboard!</h4>
         <p className="lead">Manage everything and have fun!</p>
       </Container>
     </Jumbotron>      
     </div>
     <JumbotronCard/>
     
-    <div style={{padding:'30px 50px'}}>
-      <TableApp/>
+    {/* <div style={{padding:'30px 50px'}}> */}
+      <TableApp />
 
-    </div>
+   
     </div>
 
   );

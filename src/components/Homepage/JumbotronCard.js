@@ -45,16 +45,16 @@ const JumbotronCard = () => {
   }
 
   return (
-    <div style={{padding:'20px 0px', marginLeft:'20px'}}>
+    <div>
         <Grid container spacing={3}>
         {stats.map((stat) => 
         <Grid item xs key={stat.id}>
-        <Jumbotron style={{ backgroundColor: '#D8EDFF', height: '60px', width: '250px', border:'2px solid' }}>
-          <Container fluid style={{padding:'20px'}}>
+        <Jumbotron style={{ backgroundColor: '#E8FAFF',padding: 35, height: 5,width:'250px', border:'2px solid' }}>
+          <Container fluid style={{width:'120%', marginTop:'-14px' }} >
           <div>          
             <span className="lead toUpper">{stat.title}</span>
-            :
-            <Badge variant="light">{stat.amount}</Badge>
+            :  
+            <Badge variant="light" style={{marginLeft:'8px'}}>{stat.amount}</Badge> 
             </div>
           </Container>
         </Jumbotron>

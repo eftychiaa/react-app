@@ -4,7 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ButtonApp from './ButtonApp';
-
+import { spacing } from '@material-ui/system';
+import { Link } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,9 +18,14 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  
 }));
 
-const ButtonAppBar = () => {
+const theme = {
+  spacing: 10,
+}
+
+const MainHeader = () => {
   const classes = useStyles();
 
   return (
@@ -27,16 +33,18 @@ const ButtonAppBar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
+          <Link to="/" style={{color:"white"}}>
             Code.Hub Dashboard
+            </Link>
           </Typography>
           
-          <ButtonApp msg="View all" link="allCourses" color="primary"></ButtonApp>
+          <ButtonApp variant="light" msg="View all" link="allCourses" color="primary" mr={2} ></ButtonApp>
           
-         <ButtonApp msg="Add new course" link="addNewCourse" color="primary"></ButtonApp>
+         <ButtonApp variant="light" msg="Add new course" link="addNewCourse" color="primary"></ButtonApp>
          
         </Toolbar>
       </AppBar>
     </div>
   );
 }
-export default ButtonAppBar;
+export default MainHeader;
