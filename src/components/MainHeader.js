@@ -37,11 +37,12 @@ const MainHeader = () => {
             Code.Hub Dashboard
             </Link>
           </Typography>
-          
-          <ButtonApp variant="light" msg="View all" link="allCourses" color="primary" mr={2} ></ButtonApp>
-          
-         <ButtonApp variant="light" msg="Add new course" link="addNewCourse" color="primary"></ButtonApp>
-         
+          <Link to="/allCourses">
+          <ButtonApp variant="light" msg="View all" color="primary" mr={2} ></ButtonApp>
+          </Link>
+          <Link to="/addNewCourse">
+         <ButtonApp variant="light" msg="Add new course" color="primary"></ButtonApp>
+         </Link>
         </Toolbar>
       </AppBar>
     </div>

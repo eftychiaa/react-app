@@ -11,16 +11,18 @@ import { Link } from "react-router-dom";
 //   },
 // }));
 
-const ButtonApp = ({msg,color,link,variant}) => {
+const ButtonApp = ({msg,color,link,variant,functionClick}) => {
   
 
 
   return (
-    <div >
-          <Link to={`/${link}`}>  
-      <Button variant={variant}>{msg}</Button>
-       </Link>
-    </div>
+    // <div >
+    <span>
+          {/* <Link to={`/${link}`}>   */}
+      <Button onClick={functionClick} variant={variant}>{msg} </Button>
+       {/* </Link> */}
+       </span>
+  
   );
 }
 

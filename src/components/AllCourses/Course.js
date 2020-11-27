@@ -5,6 +5,7 @@ import {
 } from 'reactstrap';
 import ButtonApp from '../ButtonApp';
 import CheckIcon from '@material-ui/icons/Check';
+import { Link } from "react-router-dom";
 //import CourseDetails from '../CourseDetails/CourseDetails';
 
 
@@ -24,7 +25,9 @@ const Course = (props) => {
               <div>Duration : <span style={{fontWeight: 'bold'}}>{props.duration} </span></div>
               <div>Dates : <span style={{fontWeight: 'bold'}}>{props.dateStart} - {props.dateEnd}</span> </div>
           </CardText>
-          <ButtonApp link={`courses/${props.id}`} id={props.id} msg="View">Button</ButtonApp>
+          <Link to={`courses/${props.id}`}>
+          <ButtonApp id={props.id} msg="View">Button</ButtonApp>
+          </Link>
         </CardBody>
       </Card>
     </div>
