@@ -1,14 +1,27 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { Spinner, Alert, ListGroup } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import CheckIcon from "@material-ui/icons/Check";
+import Parser from "html-react-parser";
+import MainHeader from "../MainHeader";
+import InstructorsDetail from "./getInstructorDetail";
+import ButtonApp from "../ButtonApp";
+//import Button from 'react-bootstrap/Button';
+import axios from "axios";
+//import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { useState } from "react";
+//import { useState } from "react";
 import Calendar from "../Calendar";
 import { FormText } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
 import LastCourse from "../../LastCourse";
 import FirstView from "../Homepage/FirstView";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios";
+//import DeleteCourse from './DeleteCourse';
+// import EditCourse from './EditCourse.js'
+import { render } from "@testing-library/react";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -21,49 +34,50 @@ const ColoredLine = ({ color }) => (
   />
 );
 
-// const regexImagePath = ({name})=> {
-//   const regex = /\//;
-//  const isValidRegex = (regex.test('name'));
-// }
 
-class AddNew extends Component {
+class EditCourse extends React.Component {
+
+
+  newdateStart = this.props.location.state.coursePacket.dates.start_date.split("/").reverse().join("-")+ "T10:00:00.000Z";
+   newdateEnd = this.props.location.state.coursePacket.dates.end_date.split("/").reverse().join("-")+ "T10:00:00.000Z";
+// formattedvalue1 = newdate + "T10:00:00.000Z";
+
   state = {
+    open: this.props.location.state.coursePacket.open,
+    instructors: this.props.location.state.coursePacket.instructors,
+    dates: {
+      start_date: this.newdateStart, 
+      end_date: this.newdateEnd,
+    },
+    price: {
+      normal:this.props.location.state.coursePacket.price.normal,
+      early_bird:this.props.location.state.coursePacket.price.early_bird,
+    },
+    item: {
+      title: this.props.location.state.coursePacket.title,
+      duration: this.props.location.state.coursePacket.duration,
+      imagePath: this.props.location.state.coursePacket.imagePath,
+      description: this.props.location.state.coursePacket.description,
+    },
     redirectToNewPage: false,
-  };
-
-  constructor() {
-    super();
-    this.state = {
-      title: "",
-      duration: "",
-      imagePath: "",
-      open: false,
-      instructors: [],
-      description: "",
-      dates: {
-        start_date: "",
-        end_date: "",
-      },
-      price: {
-        normal: "",
-        early_bird: "",
-      },
-      courses: [],
-    };
   }
+  // handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   this.setState({ [name]: value }, () => console.log(this.state));
+  //   // event.persist();
+  
+  //   // this.setState(prevState => ({
+  //   //   title: { prevState.title,  [event.target.name]: event.target.value }
+  //   // }))
+  // };
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value }, () => console.log(this.state));
-  };
-
-  handleChangeTitle = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value }, () => console.log(this.state));
-    this.setState((prevState) => ({
-      lastiId: prevState.courses[prevState.courses.length - 1].id,
-    }));
-  };
+    event.persist();
+  
+    this.setState(prevState => ({
+      item: { ...prevState.item,  [event.target.name]: event.target.value }
+    }))
+  }
 
   handleChangeOpen = (event) => {
     this.setState((prevState) => ({
@@ -84,10 +98,10 @@ class AddNew extends Component {
   }
 
   handleChangeDateEnd(value, formattedValue) {
-    this.setState({
-      value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
-      formattedValue: formattedValue, // Formatted String, ex: "11/19/2016"
-    });
+    // this.setState({
+    //   value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
+    //   formattedValue: formattedValue, // Formatted String, ex: "11/19/2016"
+    // });
     this.setState(({ dates }) => {
       // let newInstructor = [...instructors];
       dates["end_date"] = [];
@@ -96,7 +110,6 @@ class AddNew extends Component {
       //return { instructors: newInstructor };
     });
   }
-
 
   handleChangeCheckbox = (event) => {
     const value = event.target.value;
@@ -132,104 +145,74 @@ class AddNew extends Component {
       //     return { instructors: newInstructor };
     });
   };
+  
 
-
-  handleSubmit = (event) => {
+   handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      ((this.state.dates.start_date !== "null" &&
-      this.state.dates.start_date !== "null") &&
-      this.state.dates.start_date > this.state.dates.end_date)
-    ) {
-      alert("The start date can't be after the end date! Please try again");
-    } else if (this.state.instructors.length === 0) {
-      alert("You should select at least one instructor!");
-    } else if(parseInt(this.state.price.normal) < parseInt(this.state.price.early_bird) ){
-      alert("The early bird price seems to be greater than the normal price. Please try again");
-    }else{
-      fetch("http://localhost:3001/courses/", {
-        method: "POST",
-        body: JSON.stringify({
-          id: this.state.lastiId.startsWith(0)
-            ? 0 + (parseInt(this.state.lastiId) + 1).toString()
-            : parseInt(this.state.lastiId) + 1,
-          title: this.state.title,
-          imagePath: this.state.imagePath,
+    // Simple PUT request with a JSON body using fetch
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          //id: this.props.location.state.coursePacket.id,
+          title: this.state.item.title,
+          imagePath: this.state.item.imagePath,
           price: {
             normal: parseInt(this.state.price.normal),
-            early_bird: parseInt(this.state.early_bird),
+            early_bird: parseInt(this.state.price.early_bird),
           },
           dates: {
             start_date: this.state.dates.start_date,
             end_date: this.state.dates.end_date,
           },
-          duration: this.state.duration,
+          duration: this.state.item.duration,
           open: this.state.open,
           instructors: this.state.instructors,
-          description: this.state.description,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((response) => console.log("Success:", JSON.stringify(response)))
+          description: this.state.item.description, })
+    };
+    fetch(`http://localhost:3001/courses/${this.props.location.state.coursePacket.id}`, requestOptions)
+        .then(response => response.json())
         .then(this.setState({ redirectToNewPage: true }))
-        .catch((error) => console.error("Error:", error));
-    }
-  };
+        .then(data => this.setState({ postId: data.id }));
 
-  componentDidMount() {
-    this.setState({ isLoading: true });
-
-    axios
-      .get(`http://localhost:3001/courses`)
-      .then((response) =>
-        this.setState({ courses: response.data, isLoading: false })
-      )
-      .catch((error) => this.setState({ error, isLoading: false }));
-  }
+}
 
   render() {
-    const { instructors } = this.state;
-    // const { price } = this.state;
-    //const { dates } = this.state;
-
-    console.log(this.state);
+    //this.props.location.state.coursePacket.dates.end_date = this.props.location.state.coursePacket.dates.end_date.split("/").reverse().join("-")+ "T10:00:00.000Z";
+    const { coursePacket } = this.props.location.state;
     if (this.state.redirectToNewPage) {
-      this.componentDidMount();
+      
       return <Redirect to="/" />;
     }
-    return (
-      <div style={{ marginTop: 30 }}>
-        <Form
-          style={{  marginTop: "10px", backgroundColor:"aliceblue" }}
-          onSubmit={this.handleSubmit}
-        >
-          <h4 style={{marginLeft:15}}>Add Course</h4>
+    return(
+      <Form
+      style={{  marginTop: "10px", backgroundColor:"aliceblue" }}
+      onSubmit={this.handleSubmit}
+    >
+      <h4 style={{marginLeft:15}}>Edit Course</h4>
+      <FormGroup style={{marginLeft:15}}>
+        <Label for="title" sm={2}>
+          Title:
+        </Label>
+        <Col className="col-sm-10">
+          <Input
+            value={this.state.item.title}
+            onChange={this.handleChange}
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Title"
+            required
+          />
+        </Col>
+      </FormGroup>
           <FormGroup style={{marginLeft:15}}>
-            <Label for="title" sm={2}>
-              Title:
-            </Label>
-            <Col className="col-sm-10">
-              <Input
-                value={this.state.title}
-                onChange={this.handleChangeTitle}
-                type="text"
-                name="title"
-                id="title"
-                placeholder="Title"
-                required
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup style={{marginLeft:15}}>
-            <Label for="duartion" sm={2}>
+            <Label for="duration" sm={2}>
               Duration:
             </Label>
             <Col className="col-sm-10">
               <Input
-                value={this.state.duration}
+                value={this.state.item.duration}
                 onChange={this.handleChange}
                 type="text"
                 name="duration"
@@ -245,7 +228,7 @@ class AddNew extends Component {
             </Label>
             <Col className="col-sm-10">
               <Input
-                value={this.state.imagePath}
+                value={this.state.item.imagePath}
                 onChange={this.handleChange}
                 type="text"
                 name="imagePath"
@@ -284,7 +267,7 @@ class AddNew extends Component {
                     type="checkbox"
                     name="instructor01"
                     id="instructor01"
-                    checked={instructors.includes("01")}
+                     checked={this.state.instructors.includes("01")}
                     onChange={this.handleChangeCheckbox}
                   />{" "}
                   John Tsevdos
@@ -297,7 +280,7 @@ class AddNew extends Component {
                     type="checkbox"
                     name="instructor02"
                     id="instructor02"
-                    checked={instructors.includes("02")}
+                     checked={this.state.instructors.includes("02")}
                     onChange={this.handleChangeCheckbox}
                   />{" "}
                   Yiannis Nikolakopoulos
@@ -312,7 +295,7 @@ class AddNew extends Component {
             </Label>
             <Col sm={10}>
               <Input
-                value={this.state.description}
+                value={this.state.item.description}
                 onChange={this.handleChange}
                 type="textarea"
                 name="description"
@@ -340,7 +323,7 @@ class AddNew extends Component {
                   {/* <Label>My Date Picker</Label> */}
                   <DatePicker
                     id="startDate"
-                    value={this.state.start_date}
+                    value={this.state.dates.start_date}
                     onChange={(v, f) => this.handleChangeDateStart(v, f)}
                   />
                   <FormText>Help</FormText>
@@ -354,7 +337,7 @@ class AddNew extends Component {
                 <Col className="col-sm-10">
                   <DatePicker
                     id="endDate"
-                    value={this.state.end_date}
+                    value={this.state.dates.end_date}
                     onChange={(v, f) => this.handleChangeDateEnd(v, f)}
                   />
                 </Col>
@@ -403,13 +386,13 @@ class AddNew extends Component {
           </FormGroup>
           <FormGroup style={{ paddingLeft: 1200 }} check row>
             <Col sm={{ size: 12, offset: 2 }}>
-              <Button style={{ backgroundColor: "#3f51b5" }}>Add Course</Button>
+              <Button style={{ backgroundColor: "#3f51b5" }}>Submit changes</Button>
             </Col>
           </FormGroup>
-        </Form>
-      </div>
-    );
+      </Form>
+      )
   }
+  
 }
 
-export default AddNew;
+export default EditCourse;

@@ -4,7 +4,8 @@ import AllCourses from "./components/AllCourses/AllCourses";
 import FirstView from "../src/components/Homepage/FirstView";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CourseDetails from "./components/CourseDetails/CourseDetails";
-import AddNew from "./components/NewCourse/AddNew"
+import AddNew from "./components/NewCourse/AddNew";
+import EditCourse from './components/CourseDetails/EditCourse'
 
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
              <Route              
               path="/courses/:id"
               component={CourseDetails}
+            />
+            <Route              
+              path="/editCourse"
+              component={EditCourse}
             />
           </Switch>
         </div>

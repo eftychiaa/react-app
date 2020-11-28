@@ -23,62 +23,49 @@
   ],
   "courses": [
     {
-      "id": "01",
-      "title": "Certified Scrum Master®",
       "imagePath": "/scrum.png",
       "price": {
         "normal": 1100,
         "early_bird": 800
       },
       "dates": {
-        "start_date": "2019-09-27",
-        "end_date": "2019-09-28"
+        "start_date": null,
+        "end_date": null
       },
       "duration": "2 days",
       "open": true,
       "instructors": [
         "01"
       ],
-      "description": "<p>This <strong>innovative Scrum class</strong> won’t be like any other you’ve heard of, with an unconventional focus on the deeply human foundations at work in teams building stuff together.</p><p>This two-day seminar is designed to give aspiring and beginning ScrumMasters and team members the foundations of Scrum and Agile practice. Chock full of exercises, the seminar creates lasting memories and learnings you can carry through into your team so you can avoid common Agile pitfalls. The seminar is designed and taught by <strong>Jim Coplien</strong>, <strong>author of Organizational Patterns and Lean/Agile Process and Architecture Coach</strong>.</p>"
+      "description": "<p>This <strong>innovative Scrum class</strong> won’t be like any other you’ve heard of, with an unconventional focus on the deeply human foundations at work in teams building stuff together.</p><p>This two-day seminar is designed to give aspiring and beginning ScrumMasters and team members the foundations of Scrum and Agile practice. Chock full of exercises, the seminar creates lasting memories and learnings you can carry through into your team so you can avoid common Agile pitfalls. The seminar is designed and taught by <strong>Jim Coplien</strong>, <strong>author of Organizational Patterns and Lean/Agile Process and Architecture Coach</strong>.</p>",
+      "id": "01"
     },
     {
-      "id": "02",
-      "title": "User eXperience (UX) Research",
-      "imagePath": "/ui-ux.png",
       "price": {
-        "normal": 500,
-        "early_bird": 450
+        "normal": null,
+        "early_bird": null
       },
-      "dates": {
-        "start_date": "2020-10-05",
-        "end_date": "2020-10-27"
-      },
-      "duration": "4 Fridays and 4 Saturdays",
-      "open": true,
-      "instructors": [
-        "01",
-        "02"
-      ],
-      "description": "<p>Do you want to <strong>design products based on opinions or based on evidence</strong>?</p><p>In this course you will learn how <strong>UX research</strong> builds products that users really need, can and want to use!</p>"
+      "dates": {},
+      "id": "02"
     },
     {
-      "id": "03",
-      "title": "Angular",
+      "title": "Sokratis",
       "imagePath": "/angular.png",
       "price": {
         "normal": 450,
         "early_bird": 400
       },
       "dates": {
-        "start_date": "2020-10-12",
-        "end_date": "2020-10-18"
+        "start_date": null,
+        "end_date": null
       },
       "duration": "2 Wednesdays and 3 Saturdays",
       "open": true,
       "instructors": [
         "02"
       ],
-      "description": "<p>This code.learn program&nbsp;covers introductory and advanced <strong>Angular</strong> topics through extensive hands-on sessions and guidance from senior developers.</p>"
+      "description": "<p>This code.learn program&nbsp;covers introductory and advanced <strong>Angular</strong> topics through extensive hands-on sessions and guidance from senior developers.</p>",
+      "id": "03"
     },
     {
       "id": "04",
@@ -89,8 +76,8 @@
         "early_bird": 450
       },
       "dates": {
-        "start_date": "2018-10-19",
-        "end_date": "2018-10-10"
+        "start_date": "19/10/2018",
+        "end_date": "10/10/2018"
       },
       "duration": "2 Fridays and 4 Saturdays",
       "open": true,
@@ -101,11 +88,258 @@
     },
     {
       "id": "05",
-      "title": "da",
+      "title": "a",
       "imagePath": "/angular.png",
       "price": {
-        "normal": 50,
-        "early_bird": 5
+        "normal": 3,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "s",
+      "open": true,
+      "instructors": [
+        "01"
+      ],
+      "description": "s"
+    },
+    {
+      "id": "06",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 3,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "02"
+      ],
+      "description": "a"
+    },
+    {
+      "id": "07",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 1
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "s",
+      "open": true,
+      "instructors": [
+        "02"
+      ],
+      "description": "s"
+    },
+    {
+      "id": "08",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 4,
+        "early_bird": 3
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "01"
+      ],
+      "description": "a"
+    },
+    {
+      "id": "09",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-17",
+        "end_date": "2020-11-27"
+      },
+      "duration": "2",
+      "open": true,
+      "instructors": [
+        "02"
+      ],
+      "description": "aa"
+    },
+    {
+      "id": "010",
+      "title": "2",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 4,
+        "early_bird": 3
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "01"
+      ],
+      "description": "3"
+    },
+    {
+      "id": "011",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 2,
+        "early_bird": 1
+      },
+      "dates": {
+        "start_date": "2020-11-03",
+        "end_date": "2020-11-27"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "01"
+      ],
+      "description": "a"
+    },
+    {
+      "id": "012",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 10,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-28",
+        "end_date": "2020-11-29"
+      },
+      "duration": "s",
+      "open": false,
+      "instructors": [
+        "01"
+      ],
+      "description": "q"
+    },
+    {
+      "id": "013",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "02"
+      ],
+      "description": "a"
+    },
+    {
+      "id": "014",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-28"
+      },
+      "duration": "2",
+      "open": true,
+      "instructors": [
+        "01"
+      ],
+      "description": "1"
+    },
+    {
+      "id": "015",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-26"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "02"
+      ],
+      "description": "sa"
+    },
+    {
+      "id": "016",
+      "title": "a",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 1
+      },
+      "dates": {
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-24"
+      },
+      "duration": "2",
+      "open": true,
+      "instructors": [
+        "01"
+      ],
+      "description": "1"
+    },
+    {
+      "id": "017",
+      "title": "2",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 1
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "5",
+      "open": false,
+      "instructors": [
+        "01"
+      ],
+      "description": "45"
+    },
+    {
+      "id": "018",
+      "title": "aaa",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 1
       },
       "dates": {
         "start_date": "2020-11-16",
@@ -114,48 +348,143 @@
       "duration": "q",
       "open": true,
       "instructors": [
-        "01",
         "02"
       ],
-      "description": "sa"
+      "description": "12"
     },
     {
-      "id": "06",
-      "title": "test",
-      "imagePath": "3",
+      "id": "019",
+      "title": "q",
+      "imagePath": "5",
       "price": {
         "normal": 5,
-        "early_bird": 50
+        "early_bird": 2
       },
       "dates": {
-        "start_date": "2020-11-27",
-        "end_date": "2020-11-29"
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-25"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "02"
+      ],
+      "description": "w"
+    },
+    {
+      "id": "020",
+      "title": "a",
+      "imagePath": "2",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-17"
+      },
+      "duration": "2",
+      "open": false,
+      "instructors": [
+        "02"
+      ],
+      "description": "a"
+    },
+    {
+      "title": "eutuxia",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-22"
       },
       "duration": "2",
       "open": true,
       "instructors": [
-        "02"
+        "01"
       ],
-      "description": "dfc"
+      "description": "a",
+      "id": "021"
     },
     {
-      "id": "07",
-      "title": "as",
-      "imagePath": "/angular.png",
+      "title": "a!!",
+      "imagePath": "1",
       "price": {
-        "normal": 4,
-        "early_bird": 3
+        "normal": 5,
+        "early_bird": 20
       },
       "dates": {
-        "start_date": "null",
-        "end_date": "null"
+        "start_date": "2020-11-09",
+        "end_date": "2020-11-28T10:00:00.000Z"
       },
-      "duration": "3",
+      "duration": "2",
+      "open": true,
+      "instructors": [
+        "01",
+        "02"
+      ],
+      "description": "2sd",
+      "id": "023"
+    },
+    {
+      "title": "1",
+      "imagePath": "/angular.png",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-08",
+        "end_date": "2020-11-15"
+      },
+      "duration": "2",
       "open": false,
       "instructors": [
         "01"
       ],
-      "description": "s"
+      "description": "5",
+      "id": "024"
+    },
+    {
+      "id": "025",
+      "title": "5",
+      "imagePath": "5",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-25"
+      },
+      "duration": "5",
+      "open": false,
+      "instructors": [
+        "01"
+      ],
+      "description": "5"
+    },
+    {
+      "id": "026",
+      "title": "2",
+      "imagePath": "2",
+      "price": {
+        "normal": 5,
+        "early_bird": 2
+      },
+      "dates": {
+        "start_date": "2020-11-15",
+        "end_date": "2020-11-24"
+      },
+      "duration": "3",
+      "open": false,
+      "instructors": [
+        "02"
+      ],
+      "description": "5"
     }
   ],
   "instructors": [

@@ -17,7 +17,7 @@ const ButtonApp = ({msg,color,link,variant,functionClick}) => {
 
   return (
     // <div >
-    <span>
+    <span style={{marginLeft:10}}>
           {/* <Link to={`/${link}`}>   */}
       <Button onClick={functionClick} variant={variant}>{msg} </Button>
        {/* </Link> */}

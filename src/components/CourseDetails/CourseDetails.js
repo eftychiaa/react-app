@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Spinner, Alert, ListGroup } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import CheckIcon from "@material-ui/icons/Check";
@@ -6,28 +6,23 @@ import Parser from "html-react-parser";
 import MainHeader from "../MainHeader";
 import InstructorsDetail from "./getInstructorDetail";
 import ButtonApp from "../ButtonApp";
+import Button from 'react-bootstrap/Button';
+import axios from "axios";
+import DeleteCourse from './DeleteCourse';
+import EditCourse from './EditCourse.js'
+import { render } from "@testing-library/react";
 
-//import Contacts from '../common/Contacts';
-//import UserCard from '../common/UserCard';
-//import {API} from '../api';
 
-// export class Delete extends React.Component {
-//   constructor(props, context) {
-//     super(props, context);
-    
-//     this.handleClick = this.handleClick.bind(this);
-//   }
-  
-//   // the rest of code...
-// }
-// export class Search extends Component {
-
-//   handleClick(){
-//     console.log("algo");
-//     this.props.findPokemon('eevee');
-//     //console.log(this.refs.name);
-//   }
-// }
+const ColoredLine = ({ color }) => (
+  <hr
+    style={{
+      color: color,
+      height: 0,
+      marginLeft: 0,
+      width: "60%",
+    }}
+  />
+);
 
 const CourseDetails = () => {
   //   const [contacts, setContacts] = useState([]);
@@ -68,6 +63,8 @@ const CourseDetails = () => {
     fetchData();
   }, []);
 
+
+
  
 
   if (error) {
@@ -85,9 +82,8 @@ const CourseDetails = () => {
     return input.replace(pattern, "$3/$2/$1");
   }
 
-  function handleClick(){
-    console.log("clicked");
-  };
+
+
  // const instructors = [courseDetail.instructors];
   console.log(instructors);
 
@@ -103,28 +99,48 @@ const CourseDetails = () => {
 
     console.log(courseDetail.description);
     return (
-      <div>
+      <div style={{marginLeft:35, marginTop:20}}>
         <h1>
           {courseDetail.title} ({courseDetail.id})
         </h1>
         <img
           src={courseDetail.imagePath}
-          style={{ width: "1000px", height: "350px" }}
+          style={{ width: "60%", height: "350px", marginTop:10 }}
           alt="Course Logo"
         ></img>
-        <div>Price: {courseDetail.price?.normal}€</div>
-        <div>Bookable: {courseDetail.open && <CheckIcon />}</div>
-        <div>Duration: {courseDetail.duration} </div>
-        <div>
+        <ColoredLine/>
+        <div style={{marginTop:20}}>
+        <div>Price: {courseDetail.price?.normal}€
+        <span style={{marginLeft:"40%"}}>Duration: {courseDetail.duration} </span>
+        </div>
+        <div>Bookable: {courseDetail.open && <CheckIcon />}
+        
+        <span style={{marginLeft:660}}>
           Dates: {courseDetail.dates?.start_date} -{" "}
           {courseDetail.dates?.end_date}{" "}
+        </span>
         </div>
+       <div style={{marginTop:10}}>
         {Parser(courseDetail.description)}
+        </div>
+       <div style={{marginBottom:20}}>
+       <Link to={{
+  pathname: '/editCourse',
+  state: {
+    coursePacket:courseDetail
+  }
+}} id={courseDetail}>
+          <ButtonApp id={courseDetail.id} msg="Edit"></ButtonApp>
+          </Link>
+          {/* <EditCourse detailsCourse={courseDetail}/> */}
+           {/* <ButtonApp onChange={console.log('!')} msg="Delete"></ButtonApp>  */}
+          {/* <button onChange={console.log('test')}>Delete</button> */}
+         <DeleteCourse id={courseDetail.id}></DeleteCourse>
+          {/* <Button variant="danger" onClick={() => deleteContact(courseDetail.id)}>Delete</Button> */}
+          {/*  */}
+          </div>
         <InstructorsDetail instr={courseDetail.instructors}/>
-        <div>
-          <ButtonApp msg="Edit"></ButtonApp>
-          {/* <ButtonApp onChange={console.log('!')} msg="Delete"></ButtonApp> */}
-          <button onChange={console.log('test')}>Delete</button>
+        
         </div>
       </div>
     );

@@ -174,15 +174,15 @@ const InstructorsDetail = ({ instr }) => {
     //   ))}
 
     //     </div>
-    <div>
-      <div>
+    <div >
+      <div >
         <h1>Instructors</h1>
-        <div className="marginLeft50">
+        <div >
           <div >
             {instructorAll.map((instruct) => (
               <div key={instruct.id} style={{marginBottom:20}}>
                 <div>{instruct.name.first} {instruct.name.last} ({instruct.dob})</div> 
-                <div>Email: {instruct.email} | <span><Link to={`${instruct.linkedin}`}>Linkedin</Link></span></div> 
+                <div>Email: <a href={`mailto:${instruct.email}`}>{instruct.email}</a> |<span><a href={`${instruct.linkedin}`}>{" "}Linkedin</a></span></div> 
                 <div>{instruct.bio}</div>
               </div>
             ))}
