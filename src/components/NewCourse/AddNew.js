@@ -146,6 +146,10 @@ class AddNew extends Component {
       alert("You should select at least one instructor!");
     } else if(parseInt(this.state.price.normal) < parseInt(this.state.price.early_bird) ){
       alert("The early bird price seems to be greater than the normal price. Please try again");
+    }else if(parseInt(this.state.price.normal)<0 || parseInt(this.state.price.early_bird)<0){
+      alert(
+        "Prices should not have negative value. Please try again"
+      );
     }else{
       fetch("http://localhost:3001/courses/", {
         method: "POST",
