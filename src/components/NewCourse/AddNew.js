@@ -5,9 +5,7 @@ import { FormText } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import {Spinner, Alert} from 'react-bootstrap';
-import ModalPopup from "../ModalPopup";
-import ImageUploader from "../ImageUploader";
+import { Spinner, Alert } from "react-bootstrap";
 const BASE_URL = "http://localhost:5000/";
 
 const ColoredLine = ({ color }) => (
@@ -21,14 +19,11 @@ const ColoredLine = ({ color }) => (
   />
 );
 
-
-
-
 // function ImageUploader1(){
 
 //  // render()
 //   return(
-    
+
 //   )
 // }
 
@@ -68,8 +63,7 @@ class AddNew extends Component {
     };
   }
 
-   selectImages = (event) => {
-  
+  selectImages = (event) => {
     let image;
     image = event.target.files.item(0);
     // images = images.filter((image) =>
@@ -80,13 +74,13 @@ class AddNew extends Component {
     }
   };
 
-   uploadImages = () => {
+  uploadImages = () => {
     //const uploaders = this.state.images.map((image) => {
     const data = new FormData();
-    if(this.state.image){
-    data.append("image", this.state.image, this.state.image.name);
-  }
-  
+    if (this.state.image) {
+      data.append("image", this.state.image, this.state.image.name);
+    }
+
     // Make an AJAX upload request using Axios
     axios
       .post(BASE_URL + "upload", data)
@@ -99,7 +93,7 @@ class AddNew extends Component {
         console.log("done");
       })
       .catch((err) => alert(err.message));
-  
+
     return this.state.imagePath;
   };
 
@@ -130,7 +124,6 @@ class AddNew extends Component {
         dates.start_date = value?.split("T")[0];
         return dates;
       }
-     
     });
   }
 
@@ -147,7 +140,6 @@ class AddNew extends Component {
       //return { instructors: newInstructor };
     });
   }
-
 
   handleChangeCheckbox = (event) => {
     const value = event.target.value;
@@ -184,24 +176,28 @@ class AddNew extends Component {
     });
   };
 
-
   handleSubmit = (event) => {
     event.preventDefault();
     if (
-      ((this.state.dates.start_date !== "null" &&
-      this.state.dates.start_date !== "null") &&
-      this.state.dates.start_date > this.state.dates.end_date)
+      this.state.dates.start_date !== "null" &&
+      this.state.dates.start_date !== "null" &&
+      this.state.dates.start_date > this.state.dates.end_date
     ) {
       alert("The start date can't be after the end date! Please try again");
     } else if (this.state.instructors.length === 0) {
       alert("You should select at least one instructor!");
-    } else if(parseInt(this.state.price.normal) < parseInt(this.state.price.early_bird) ){
-      alert("The early bird price seems to be greater than the normal price. Please try again");
-    }else if(parseInt(this.state.price.normal)<0 || parseInt(this.state.price.early_bird)<0){
+    } else if (
+      parseInt(this.state.price.normal) < parseInt(this.state.price.early_bird)
+    ) {
       alert(
-        "Prices should not have negative value. Please try again"
+        "The early bird price seems to be greater than the normal price. Please try again"
       );
-    }else{
+    } else if (
+      parseInt(this.state.price.normal) < 0 ||
+      parseInt(this.state.price.early_bird) < 0
+    ) {
+      alert("Prices should not have negative value. Please try again");
+    } else {
       this.setState({ isLoading: true });
       fetch("http://localhost:3001/courses/", {
         method: "POST",
@@ -229,7 +225,7 @@ class AddNew extends Component {
         },
       })
         .then((res) => res.json())
-        .then(this.setState({ redirectToNewPage: true, isLoading : false}))
+        .then(this.setState({ redirectToNewPage: true, isLoading: false }))
         .catch((error) => console.error("Error:", error));
     }
   };
@@ -243,7 +239,6 @@ class AddNew extends Component {
         this.setState({ courses: response.data, isLoading: false })
       )
       .catch((error) => this.setState({ error, isLoading: false }));
-      
   }
 
   render() {
@@ -264,11 +259,11 @@ class AddNew extends Component {
     return (
       <div style={{ marginTop: 30 }}>
         <Form
-          style={{  marginTop: "10px", backgroundColor:"aliceblue" }}
+          style={{ marginTop: "10px", backgroundColor: "aliceblue" }}
           onSubmit={this.handleSubmit}
         >
-          <h4 style={{marginLeft:15}}>Add Course</h4>
-          <FormGroup style={{marginLeft:15}}>
+          <h4 style={{ marginLeft: 15 }}>Add Course</h4>
+          <FormGroup style={{ marginLeft: 15 }}>
             <Label for="title" sm={2}>
               Title:
             </Label>
@@ -284,7 +279,7 @@ class AddNew extends Component {
               />
             </Col>
           </FormGroup>
-          <FormGroup style={{marginLeft:15}}>
+          <FormGroup style={{ marginLeft: 15 }}>
             <Label for="duartion" sm={2}>
               Duration:
             </Label>
@@ -300,24 +295,25 @@ class AddNew extends Component {
               />
             </Col>
           </FormGroup>
-          <FormGroup style={{marginLeft:15}}>
+          <FormGroup style={{ marginLeft: 15 }}>
             <Label for="image" sm={2}>
               Image path:
             </Label>
             <Col className="col-sm-2">
-            
-         <div>
-            <input
-              className="form-control "
-              type="file"
-              onChange={this.selectImages}
-            />
-            <div className="col-sm-4" style={{ right: -300, top: -38,marginBottom:-30 }}>
-              <button className="btn btn-primary" onClick={this.uploadImages}>
-                Submit
-              </button>
-            </div>
-            </div>
+              <input
+                className="form-control "
+                type="file"
+                onChange={this.selectImages}
+              />
+              <div
+                className="col-sm-4"
+                style={{ right: -300, top: -38, marginBottom: -30 }}
+              >
+                <button className="btn btn-primary" onClick={this.uploadImages}>
+                  Submit
+                </button>
+              </div>
+
               {/* <Input
                 value={this.state.imagePath}
                 onChange={this.handleChange}
@@ -329,7 +325,7 @@ class AddNew extends Component {
               /> */}
             </Col>
           </FormGroup>
-          <FormGroup style={{marginLeft:15}}>
+          <FormGroup style={{ marginLeft: 15 }}>
             <Label for="isBookable" sm={2}></Label>
             <Col sm={{ size: 12 }}>
               <FormGroup check>
@@ -348,7 +344,7 @@ class AddNew extends Component {
             </Col>
           </FormGroup>
           <ColoredLine color="black" />
-          <FormGroup tag="fieldset" style={{marginLeft:15}}>
+          <FormGroup tag="fieldset" style={{ marginLeft: 15 }}>
             <legend className="col-form-label col-sm-2">Instructors</legend>
             <Col sm={10}>
               <FormGroup check>
@@ -364,7 +360,7 @@ class AddNew extends Component {
                   John Tsevdos
                 </Label>
               </FormGroup>
-              <FormGroup check >
+              <FormGroup check>
                 <Label check>
                   <Input
                     value="02"
@@ -380,7 +376,7 @@ class AddNew extends Component {
             </Col>
           </FormGroup>
           <ColoredLine color="black" />
-          <FormGroup style={{marginLeft:15}}>
+          <FormGroup style={{ marginLeft: 15 }}>
             <Label for="text" sm={2}>
               Description:
             </Label>
@@ -396,7 +392,7 @@ class AddNew extends Component {
             </Col>
           </FormGroup>
           <ColoredLine color="black" />
-          <FormGroup tag="fieldset" style={{marginLeft:15}}>
+          <FormGroup tag="fieldset" style={{ marginLeft: 15 }}>
             <legend className="col-form-label col-sm-2">Dates</legend>
             <Col sm={10}>
               <FormGroup>
@@ -421,7 +417,7 @@ class AddNew extends Component {
                   {/* </FormGroup> */}
                 </Col>
               </FormGroup>
-              <FormGroup >
+              <FormGroup>
                 <Label for="endDate" sm={2}>
                   End date:
                 </Label>
@@ -435,7 +431,7 @@ class AddNew extends Component {
               </FormGroup>
             </Col>
           </FormGroup>
-          <FormGroup tag="fieldset" style={{marginLeft:15}}>
+          <FormGroup tag="fieldset" style={{ marginLeft: 15 }}>
             <legend className="col-form-label col-sm-2">Price</legend>
             <Col sm={10}>
               <FormGroup>
