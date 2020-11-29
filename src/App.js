@@ -5,7 +5,8 @@ import FirstView from "../src/components/Homepage/FirstView";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CourseDetails from "./components/CourseDetails/CourseDetails";
 import AddNew from "./components/NewCourse/AddNew";
-import EditCourse from './components/CourseDetails/EditCourse'
+import EditCourse from './components/CourseDetails/EditCourse';
+import NotFound from '../src/components/NotFound';
 
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
             <Route              
               path="/editCourse"
               component={EditCourse}
+            />
+            <Route 
+          
+             component={NotFound}
             />
           </Switch>
         </div>
