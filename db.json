@@ -23,15 +23,15 @@
   ],
   "courses": [
     {
-      "title": "Certified Scrum Master®!",
+      "title": "Certified Scrum Master",
       "imagePath": "/scrum.png",
       "price": {
         "normal": 1100,
         "early_bird": 800
       },
       "dates": {
-        "start_date": "2019-09-27T10:00:00.000Z",
-        "end_date": "2019-09-28T10:00:00.000Z"
+        "start_date": "2019-09-24T10:00:00.000Z",
+        "end_date": "2019-09-26T10:00:00.000Z"
       },
       "duration": "2 days",
       "open": true,
@@ -42,15 +42,15 @@
       "id": "01"
     },
     {
-      "title": "User eXperience (UX) Researchq",
+      "title": "User eXperience (UX) Research!",
       "imagePath": "/ui-ux.png",
       "price": {
-        "normal": 500,
+        "normal": 5002,
         "early_bird": 450
       },
       "dates": {
-        "start_date": "2020-10-05T10:00:00.000Z",
-        "end_date": "2020-10-27T10:00:00.000Z"
+        "start_date": "2020-10-04",
+        "end_date": "2020-10-28"
       },
       "duration": "4 Fridays and 4 Saturdays",
       "open": true,
@@ -62,18 +62,18 @@
       "id": "02"
     },
     {
-      "title": "Angular!!",
+      "title": "Angular!@",
       "imagePath": "/angular.png",
       "price": {
         "normal": 450,
         "early_bird": 400
       },
       "dates": {
-        "start_date": "2020-10-11",
-        "end_date": "2020-10-19"
+        "start_date": "2020-10-11T10:00:00.000Z",
+        "end_date": "2020-10-19T10:00:00.000Z"
       },
       "duration": "2 Wednesdays and 3 Saturdays",
-      "open": false,
+      "open": true,
       "instructors": [
         "02"
       ],
@@ -98,6 +98,25 @@
         "01"
       ],
       "description": "<p>This is a certified program by Athens Tech College, the first educational institution in Greece that specialises in computer science and ICT studies.</p><p>Participant’s registration (payment’s completion) implies full compliance and acceptance of Code.Learn Terms &amp; Conditions.</p>"
+    },
+    {
+      "title": "pic!!!",
+      "imagePath": "/1606622012225-Screenshot (11).png",
+      "price": {
+        "normal": 100,
+        "early_bird": 10
+      },
+      "dates": {
+        "start_date": "2020-11-27",
+        "end_date": "2020-11-28"
+      },
+      "duration": "2",
+      "open": true,
+      "instructors": [
+        "02"
+      ],
+      "description": "as",
+      "id": "05"
     }
   ],
   "instructors": [

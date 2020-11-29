@@ -94,14 +94,14 @@ export default function TableApp() {
     return <Spinner animation="border" size="lg" />;
   }
 
-  if (courses.length > 0) {
-    for (var i = 0; i < courses.length; i++) {
-      if (courses[i].dates) {
-        courses[i].dates.start_date = formatDate(courses[i].dates.start_date);
-        courses[i].dates.end_date = formatDate(courses[i].dates.end_date);
-      }
-    }
-  }
+  // if (courses.length > 0) {
+  //   for (var i = 0; i < courses.length; i++) {
+  //     if (courses[i].dates) {
+  //       courses[i].dates.start_date = formatDate(courses[i].dates.start_date);
+  //       courses[i].dates.end_date = formatDate(courses[i].dates.end_date);
+  //     }
+  //   }
+  // }
 
   return (
     <div>
@@ -152,7 +152,7 @@ export default function TableApp() {
                   {course.price?.normal}€
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {course.dates?.start_date} - {course.dates?.end_date}
+                  {formatDate(course.dates.start_date)} - {formatDate(course.dates.end_date)}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                 <Link to={`courses/${course.id}`}>

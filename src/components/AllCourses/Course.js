@@ -24,7 +24,7 @@ const Course = (props) => {
               <div>Dates : <span style={{fontWeight: 'bold'}}>{props.dateStart} - {props.dateEnd}</span> </div>
           </CardText>
           <Link to={`courses/${props.id}`}>
-          <ButtonApp id={props.id} msg="View">Button</ButtonApp>
+          <ButtonApp id={props.id} style={{marginLeft:220}} msg="View">Button</ButtonApp>
           </Link>
         </CardBody>
       </Card>

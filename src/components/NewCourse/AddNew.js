@@ -6,6 +6,9 @@ import DatePicker from "reactstrap-date-picker";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import {Spinner, Alert} from 'react-bootstrap';
+import ModalPopup from "../ModalPopup";
+import ImageUploader from "../ImageUploader";
+const BASE_URL = "http://localhost:5000/";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -17,6 +20,17 @@ const ColoredLine = ({ color }) => (
     }}
   />
 );
+
+
+
+
+// function ImageUploader1(){
+
+//  // render()
+//   return(
+    
+//   )
+// }
 
 // const regexImagePath = ({name})=> {
 //   const regex = /\//;
@@ -48,8 +62,44 @@ class AddNew extends Component {
         early_bird: "",
       },
       courses: [],
+      image: "",
+      // imagePath: "",
+      message: "",
     };
   }
+
+   selectImages = (event) => {
+  
+    let image;
+    image = event.target.files.item(0);
+    // images = images.filter((image) =>
+    if (image.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+      // );
+      let message = `valid image selected`;
+      this.setState({ image, message });
+    }
+  };
+
+   uploadImages = () => {
+    //const uploaders = this.state.images.map((image) => {
+    const data = new FormData();
+    data.append("image", this.state.image, this.state.image.name);
+  
+    // Make an AJAX upload request using Axios
+    axios
+      .post(BASE_URL + "upload", data)
+      .then((response) => {
+        this.setState({
+          imagePath: response.data.imageUrl,
+        });
+      })
+      .then(() => {
+        console.log("done");
+      })
+      .catch((err) => alert(err.message));
+  
+    return this.state.imagePath;
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -252,8 +302,21 @@ class AddNew extends Component {
             <Label for="image" sm={2}>
               Image path:
             </Label>
-            <Col className="col-sm-10">
-              <Input
+            <Col className="col-sm-2">
+            
+         
+            <input
+              className="form-control "
+              type="file"
+              onChange={this.selectImages}
+            />
+            <div className="col-sm-4" style={{ right: -300, top: -38 }}>
+              <button className="btn btn-primary" onClick={this.uploadImages}>
+                Submit
+              </button>
+            </div>
+        
+              {/* <Input
                 value={this.state.imagePath}
                 onChange={this.handleChange}
                 type="text"
@@ -261,7 +324,7 @@ class AddNew extends Component {
                 id="imagePath"
                 placeholder="Image path"
                 required
-              />
+              /> */}
             </Col>
           </FormGroup>
           <FormGroup style={{marginLeft:15}}>

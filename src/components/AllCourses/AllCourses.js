@@ -53,7 +53,7 @@ function AllCourses() {
     if (!input || !input.match(pattern)) {
       return null;
     }
-    return input.replace(pattern, "$2/$3/$1");
+    return input.replace(pattern, "$3/$2/$1");
   }
 
   if (courseCard.length > 0) {

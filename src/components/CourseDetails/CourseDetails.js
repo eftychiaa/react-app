@@ -77,10 +77,13 @@ const CourseDetails = () => {
   }
 
   
-      if (courseDetail.dates) {
-        courseDetail.dates.start_date = formatDate(courseDetail.dates.start_date);
-        courseDetail.dates.end_date = formatDate(courseDetail.dates.end_date);
-      }
+
+
+  
+      // if (courseDetail.dates) {
+      //   courseDetail.start_date = formatDate(courseDetail.dates.start_date);
+      //   courseDetail.end_date = formatDate(courseDetail.dates.end_date);
+      // }
   
   if (courseDetail.description) {
     courseDetail.description = courseDetail.description.toString();
@@ -103,8 +106,8 @@ const CourseDetails = () => {
         <div>Bookable: {courseDetail.open && <CheckIcon />}
         
         <span style={{marginLeft:660}}>
-          Dates: {courseDetail.dates?.start_date} -{" "}
-          {courseDetail.dates?.end_date}{" "}
+          Dates: {formatDate(courseDetail.dates.start_date)} -{" "}
+          {formatDate(courseDetail.dates.end_date)}{" "}
         </span>
         </div>
        <div style={{marginTop:10}}>
@@ -116,7 +119,7 @@ const CourseDetails = () => {
   state: {
     coursePacket:courseDetail
   }
-}} id={courseDetail}>
+}} >
           <ButtonApp id={courseDetail.id} msg="Edit"></ButtonApp>
           </Link>
          <DeleteCourse id={courseDetail.id}></DeleteCourse>
