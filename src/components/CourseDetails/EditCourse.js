@@ -36,6 +36,7 @@ class EditCourse extends React.Component {
   state = {
     open: this.props.location.state.coursePacket.open,
     instructors: this.props.location.state.coursePacket.instructors,
+    imagePath: this.props.location.state.coursePacket.imagePath,
     dates: {
       start_date: 
         this.props.location.state.coursePacket.dates.start_date+"T10:00:00.000Z",
@@ -49,7 +50,6 @@ class EditCourse extends React.Component {
     item: {
       title: this.props.location.state.coursePacket.title,
       duration: this.props.location.state.coursePacket.duration,
-      imagePath: this.props.location.state.coursePacket.imagePath,
       description: this.props.location.state.coursePacket.description,
     },
     // redirectToNewPage: false,
@@ -236,7 +236,7 @@ class EditCourse extends React.Component {
         body: JSON.stringify({
           //id: this.props.location.state.coursePacket.id,
           title: this.state.item.title,
-          imagePath: this.state.item.imagePath,
+          imagePath: this.state.imagePath,
           price: {
             normal: parseInt(this.state.price.normal),
             early_bird: parseInt(this.state.price.early_bird),
@@ -295,6 +295,7 @@ class EditCourse extends React.Component {
       return <Redirect to="/" />;
     }
     return (
+      <div style={{ marginTop: 30 }}>
       <Form
         style={{ marginTop: "10px", backgroundColor: "aliceblue" }}
         onSubmit={this.handleSubmit}
@@ -336,13 +337,14 @@ class EditCourse extends React.Component {
           <Label for="image" sm={2}>
             Image path:
           </Label>
-          <Col className="col-sm-10">
+          <Col className="col-sm-2">
           <input
               className="form-control "
               type="file"
               onChange={this.selectImages}
             />
-            <div className="col-sm-4" style={{ right: -300, top: -38 }}>
+            <p>{this.state.imagePath}</p>
+            <div className="col-sm-4" style={{ right: -260, top: -77, marginBottom:-30 }}>
               <button className="btn btn-primary" onClick={this.uploadImages}>
                 Submit
               </button>
@@ -503,6 +505,7 @@ class EditCourse extends React.Component {
           </Col>
         </FormGroup>
       </Form>
+      </div>
     );
   }
 }

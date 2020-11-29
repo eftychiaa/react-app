@@ -101,7 +101,7 @@ const CourseDetails = () => {
         <ColoredLine/>
         <div style={{marginTop:20}}>
         <div>Price: {courseDetail.price?.normal}€
-        <span style={{marginLeft:"40%"}}>Duration: {courseDetail.duration} </span>
+        <span style={{paddingLeft:"40%"}}>Duration: {courseDetail.duration} </span>
         </div>
         <div>Bookable: {courseDetail.open && <CheckIcon />}
         
@@ -113,7 +113,7 @@ const CourseDetails = () => {
        <div style={{marginTop:10}}>
         {Parser(courseDetail.description)}
         </div>
-       <div style={{marginBottom:20}}>
+       <div style={{marginBottom:20, marginTop:30}}>
        <Link to={{
   pathname: '/editCourse',
   state: {

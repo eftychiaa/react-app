@@ -68,7 +68,7 @@ function AllCourses() {
   }
 
   return (
-    <div>
+    <div style={{marginLeft:40, marginRight:20, marginTop:20}}>
       <h1>All Courses</h1>
       <div className="marginLeft50">
         <GridList cols={3} cellHeight={"auto"}>

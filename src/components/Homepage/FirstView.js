@@ -5,7 +5,7 @@ import TableApp from "../Homepage/TableApp";
 
 function FirstView() {
   return (
-    <div id="firstView">
+    <div id="firstView" style={{marginLeft:20, marginRight:20}}>
       <div>
         <Jumbotron
           style={{ backgroundColor: "#ccebff", height: "200px", marginTop: 20 }}

@@ -44,7 +44,7 @@ const JumbotronCard = () => {
   }
 
   return (
-    <div>
+    <div style={{ marginLeft: 40, marginBottom:20, marginTop: 42 }}>
         <Grid container spacing={3}>
         {stats.map((stat) => 
         <Grid item xs key={stat.id}>

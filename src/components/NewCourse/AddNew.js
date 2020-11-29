@@ -83,7 +83,9 @@ class AddNew extends Component {
    uploadImages = () => {
     //const uploaders = this.state.images.map((image) => {
     const data = new FormData();
+    if(this.state.image){
     data.append("image", this.state.image, this.state.image.name);
+  }
   
     // Make an AJAX upload request using Axios
     axios
@@ -304,18 +306,18 @@ class AddNew extends Component {
             </Label>
             <Col className="col-sm-2">
             
-         
+         <div>
             <input
               className="form-control "
               type="file"
               onChange={this.selectImages}
             />
-            <div className="col-sm-4" style={{ right: -300, top: -38 }}>
+            <div className="col-sm-4" style={{ right: -300, top: -38,marginBottom:-30 }}>
               <button className="btn btn-primary" onClick={this.uploadImages}>
                 Submit
               </button>
             </div>
-        
+            </div>
               {/* <Input
                 value={this.state.imagePath}
                 onChange={this.handleChange}

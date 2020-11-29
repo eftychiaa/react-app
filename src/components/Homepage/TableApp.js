@@ -105,8 +105,8 @@ export default function TableApp() {
 
   return (
     <div>
-      <Toolbar>
-        <Typography
+      <Toolbar style={{backgroundColor: '#FAFAFA'}}>
+        <Typography 
           className={classes.title}
           variant="h6"
           id="tableTitle"
@@ -123,7 +123,7 @@ export default function TableApp() {
       >
         {/* <caption><div>Last {courses.length} courses</div></caption> */}
         <Table className={classes.table} aria-label="customized table">
-          <caption style={{ paddingLeft: 1520 }}>
+          <caption style={{ paddingLeft: 1470, backgroundColor: '#FAFAFA' }}>
           <Link to="/allCourses">
             <ButtonApp  msg="View All"></ButtonApp>
             </Link>
