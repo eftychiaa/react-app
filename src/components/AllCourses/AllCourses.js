@@ -1,9 +1,7 @@
 import Course from "../AllCourses/Course";
-import { useParams } from "react-router";
 import React, { useState, useEffect } from "react";
 import { GridList } from "@material-ui/core";
-import App from "../../App.css";
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Spinner, Alert } from "react-bootstrap";
 
 function AllCourses() {
   //const { id } = useParams();
@@ -13,12 +11,12 @@ function AllCourses() {
 
   //const Test = () => {
   const [courseCard, setCourseCard] = useState([]);
-  //const [isLoading, setIsLoading] = useState(false);
-  //const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fetchData = () => {
-      //setError(false);
-      //setIsLoading(true);
+      setError(false);
+      setIsLoading(true);
 
       fetch(url)
         .then((response) => {
@@ -30,20 +28,28 @@ function AllCourses() {
         })
         .then((data) => {
           setCourseCard(data);
-          console.log(data);
-          //setIsLoading(false);
+          setIsLoading(false);
         })
         .catch((error) => {
-          // setError(error);
-          //setIsLoading(false);
+          setError(error);
+          setIsLoading(false);
         });
     };
 
     fetchData();
   }, []);
 
+  if (error) {
+    return <Alert variant="warning">{error.message}</Alert>;
+  }
+
+  if (isLoading) {
+    return <Spinner animation="border" size="lg" />;
+  }
+
+
   function formatDate(input) {
-    var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
+    var pattern = /(\d{4})-(\d{2})-(\d{2})/;
     if (!input || !input.match(pattern)) {
       return null;
     }

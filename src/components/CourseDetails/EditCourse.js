@@ -1,27 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Spinner, Alert, ListGroup } from "react-bootstrap";
-import { useParams, Link } from "react-router-dom";
-import CheckIcon from "@material-ui/icons/Check";
-import Parser from "html-react-parser";
-import MainHeader from "../MainHeader";
-import InstructorsDetail from "./getInstructorDetail";
-import ButtonApp from "../ButtonApp";
-//import Button from 'react-bootstrap/Button';
-import axios from "axios";
-//import React, { Component } from "react";
+
+import { Spinner, Alert } from "react-bootstrap";
+import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 //import { useState } from "react";
-import Calendar from "../Calendar";
 import { FormText } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
-import LastCourse from "../../LastCourse";
-import FirstView from "../Homepage/FirstView";
 import { Redirect } from "react-router-dom";
-//import axios from "axios";
-//import DeleteCourse from './DeleteCourse';
-// import EditCourse from './EditCourse.js'
-import { render } from "@testing-library/react";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -65,16 +50,10 @@ class EditCourse extends React.Component {
       description: this.props.location.state.coursePacket.description,
     },
     redirectToNewPage: false,
+    startDateFormated : false,
+    endDateFormated : false
   };
-  // handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   this.setState({ [name]: value }, () => console.log(this.state));
-  //   // event.persist();
 
-  //   // this.setState(prevState => ({
-  //   //   title: { prevState.title,  [event.target.name]: event.target.value }
-  //   // }))
-  // };
 
   handleChange = (event) => {
     event.persist();
@@ -91,6 +70,7 @@ class EditCourse extends React.Component {
   };
 
   handleChangeDateStart(value, formattedValue) {
+    this.setState({ startDateFormated: true });
     this.setState(({ dates }) => {
       dates["start_date"] = [];
       if (value) {
@@ -106,6 +86,7 @@ class EditCourse extends React.Component {
     //   value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
     //   formattedValue: formattedValue, // Formatted String, ex: "11/19/2016"
     // });
+    this.setState({ endDateFormated: true });
     this.setState(({ dates }) => {
       // let newInstructor = [...instructors];
       dates["end_date"] = [];
@@ -152,6 +133,45 @@ class EditCourse extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { startDateFormated, endDateFormated,dates } = this.state;
+    if(startDateFormated === false){
+      // this.setState(({ dates }) => {
+        //  let myDates = [...dates];
+        this.setState(({ dates }) => {
+          //dates["start_date"] = [];
+          if (dates.start_date!==undefined) {
+            //dates["start_date"] = [];
+            dates.start_date = dates.start_date.split("T")[0];
+            return dates;
+          }
+        });
+      }
+
+        // let items = [...this.state.items];
+        // // 2. Make a shallow copy of the item you want to mutate
+        // let item = {...items[1]};
+        // // 3. Replace the property you're intested in
+        // item.name = 'newName';
+        // // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
+        // items[1] = item;
+        // // 5. Set the state to our new copy
+        // this.setState({items});
+
+
+        //return dates;
+        //return { instructors: newInstructor };
+      // });
+  
+    if( endDateFormated === false){
+      this.setState(({ dates }) => {
+        // let newInstructor = [...instructors];
+        //dates["end_date"] = [];
+        dates.end_date = dates.end_date?.split("T")[0];
+        return dates;
+        //return { instructors: newInstructor };
+      });
+    }
+
     if (
       this.state.dates.start_date !== "null" &&
       this.state.dates.start_date !== "null" &&
@@ -196,19 +216,35 @@ class EditCourse extends React.Component {
           description: this.state.item.description,
         }),
       };
+      this.setState({ isLoading: true });
       fetch(
         `http://localhost:3001/courses/${this.props.location.state.coursePacket.id}`,
         requestOptions
       )
         .then((response) => response.json())
-        .then(this.setState({ redirectToNewPage: true }))
-        .then((data) => this.setState({ postId: data.id }));
+        .then(this.setState({ redirectToNewPage: true, isLoading:false }))
+        .then((data) => this.setState({ postId: data.id }))
+        .catch(error => this.setState({ error, isLoading: false }));
     }
   };
 
   render() {
-    //this.props.location.state.coursePacket.dates.end_date = this.props.location.state.coursePacket.dates.end_date.split("/").reverse().join("-")+ "T10:00:00.000Z";
+    // this.props.location.state.coursePacket.dates.end_date = this.props.location.state.coursePacket.dates.end_date.split("/").reverse().join("-")+ "T10:00:00.000Z";
+    // this.props.location.state.coursePacket.dates.start_date = this.props.location.state.coursePacket.dates.start_date.split("/").reverse().join("-")+ "T10:00:00.000Z";
     const { coursePacket } = this.props.location.state;
+    const { isLoading, error, startDateFormated, endDateFormated } = this.state;
+    if (error) {
+      return <Alert variant="warning">{error.message}</Alert>;
+    }
+
+
+
+    // if(endDateFormated === false){
+      
+    // }
+    if (isLoading) {
+      return <Spinner animation="border" size="lg" />;
+    }
     if (this.state.redirectToNewPage) {
       return <Redirect to="/" />;
     }

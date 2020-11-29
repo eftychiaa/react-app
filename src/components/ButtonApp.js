@@ -1,15 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(),
-//     },
-//   },
-// }));
 
 const ButtonApp = ({msg,color,link,variant,functionClick}) => {
   

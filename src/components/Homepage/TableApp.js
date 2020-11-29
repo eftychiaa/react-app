@@ -14,7 +14,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-//import App from '../../App.css'
+import { Spinner, Alert } from "react-bootstrap";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -35,7 +35,7 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 function formatDate(input) {
-  var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
+  var pattern = /(\d{4})-(\d{2})-(\d{2})/;
   if (!input || !input.match(pattern)) {
     return null;
   }
@@ -53,12 +53,12 @@ export default function TableApp() {
 
   //const Test = () => {
   const [courses, setCourses] = useState([]);
-  //const [isLoading, setIsLoading] = useState(false);
-  //const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fetchData = () => {
-      //setError(false);
-      //setIsLoading(true);
+      setError(false);
+      setIsLoading(true);
 
       fetch("http://localhost:3001/courses")
         .then((response) => {
@@ -75,18 +75,25 @@ export default function TableApp() {
             setCourses(data);
           }
           // formatDate(data.dates.start_date);
-          //setIsLoading(false);
+          setIsLoading(false);
         })
         .catch((error) => {
-          // setError(error);
-          //setIsLoading(false);
+          setError(error);
+          setIsLoading(false);
         });
     };
 
     fetchData();
   }, []);
 
-  console.log(courses);
+  if (error) {
+    return <Alert variant="warning">{error.message}</Alert>;
+  }
+
+  if (isLoading) {
+    return <Spinner animation="border" size="lg" />;
+  }
+
   if (courses.length > 0) {
     for (var i = 0; i < courses.length; i++) {
       if (courses[i].dates) {

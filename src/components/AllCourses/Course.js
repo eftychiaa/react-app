@@ -6,14 +6,12 @@ import {
 import ButtonApp from '../ButtonApp';
 import CheckIcon from '@material-ui/icons/Check';
 import { Link } from "react-router-dom";
-//import CourseDetails from '../CourseDetails/CourseDetails';
 
 
 
 const Course = (props) => {
 
-    
-   // const id  = props.id;
+
   return (
     <div >
       <Card style={{border:'groove', width:'350px',height:'580px', marginTop:'50px'}}>

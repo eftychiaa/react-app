@@ -3,7 +3,6 @@ import axios from "axios";
 import { Spinner, Alert, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import TableApp from "../Homepage/TableApp";
 
 
 
@@ -24,9 +23,9 @@ const DeleteCourse = (props) => {
 
       history.push("/");
 
-      console.log(id);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      setError(error);
+      setIsLoading(false);
     }
     
   };

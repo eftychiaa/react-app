@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { useState } from "react";
-import Calendar from "../Calendar";
 import { FormText } from "reactstrap";
 import DatePicker from "reactstrap-date-picker";
-import LastCourse from "../../LastCourse";
-import FirstView from "../Homepage/FirstView";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import {Spinner, Alert} from 'react-bootstrap';
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -34,6 +31,8 @@ class AddNew extends Component {
   constructor() {
     super();
     this.state = {
+      isLoading: false,
+      error: null,
       title: "",
       duration: "",
       imagePath: "",
@@ -151,6 +150,7 @@ class AddNew extends Component {
         "Prices should not have negative value. Please try again"
       );
     }else{
+      this.setState({ isLoading: true });
       fetch("http://localhost:3001/courses/", {
         method: "POST",
         body: JSON.stringify({
@@ -177,8 +177,7 @@ class AddNew extends Component {
         },
       })
         .then((res) => res.json())
-        .then((response) => console.log("Success:", JSON.stringify(response)))
-        .then(this.setState({ redirectToNewPage: true }))
+        .then(this.setState({ redirectToNewPage: true, isLoading : false}))
         .catch((error) => console.error("Error:", error));
     }
   };
@@ -192,14 +191,20 @@ class AddNew extends Component {
         this.setState({ courses: response.data, isLoading: false })
       )
       .catch((error) => this.setState({ error, isLoading: false }));
+      
   }
 
   render() {
-    const { instructors } = this.state;
-    // const { price } = this.state;
-    //const { dates } = this.state;
+    const { isLoading, error } = this.state;
+    if (error) {
+      return <Alert variant="warning">{error.message}</Alert>;
+    }
 
-    console.log(this.state);
+    if (isLoading) {
+      return <Spinner animation="border" size="lg" />;
+    }
+    const { instructors } = this.state;
+
     if (this.state.redirectToNewPage) {
       this.componentDidMount();
       return <Redirect to="/" />;

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Spinner, Alert, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { Redirect } from "react-router-dom";
 
@@ -14,7 +12,6 @@ const ModalPopup = (props) => {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     // <div>

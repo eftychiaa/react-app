@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {Spinner, Alert} from 'react-bootstrap';
 import {Jumbotron,Container} from 'reactstrap';
 import Grid from '@material-ui/core/Grid';
-import App from '../../App.css';
 import { Badge } from 'reactstrap';
 
 const JumbotronCard = () => {

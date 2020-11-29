@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ButtonApp from './ButtonApp';
-import { spacing } from '@material-ui/system';
 import { Link } from "react-router-dom";
 
 
@@ -21,9 +20,7 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-const theme = {
-  spacing: 10,
-}
+
 
 const MainHeader = () => {
   const classes = useStyles();
