@@ -184,6 +184,8 @@ class AddNew extends Component {
       this.state.dates.start_date > this.state.dates.end_date
     ) {
       alert("The start date can't be after the end date! Please try again");
+    } else if (this.state.imagePath === "") {
+      alert("You choose an image and then click to submit it!");
     } else if (this.state.instructors.length === 0) {
       alert("You should select at least one instructor!");
     } else if (
@@ -309,7 +311,11 @@ class AddNew extends Component {
                 className="col-sm-4"
                 style={{ right: -300, top: -38, marginBottom: -30 }}
               >
-                <button className="btn btn-primary" onClick={this.uploadImages}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.uploadImages}
+                >
                   Submit
                 </button>
               </div>

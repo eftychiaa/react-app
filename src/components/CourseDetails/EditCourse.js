@@ -70,6 +70,14 @@ class EditCourse extends React.Component {
       let message = `valid image selected`;
       this.setState({ image, message });
     }
+    this.setState((prevState) => ({
+      image: image,
+      //imagePath : prevState.imagePath,
+    }));
+    // this.setState((prevState) => ({
+    //   item: { ...prevState, [event.target.name]: event.target.value },
+    // }));
+
   };
 
   uploadImages = () => {
@@ -77,20 +85,32 @@ class EditCourse extends React.Component {
     const data = new FormData();
     data.append("image", this.state.image, this.state.image.name);
   
-    // Make an AJAX upload request using Axios
-    axios
-      .post(BASE_URL + "upload", data)
-      .then((response) => {
-        this.setState({
-          imagePath: response.data.imageUrl,
-        });
-      })
-      .then(() => {
-        console.log("done");
-      })
-      .catch((err) => alert(err.message));
+    // // Make an AJAX upload request using Axios
+    // axios
+    //   .put('http://localhost:5000/update' + this.state.imagePath, data)
+    //   .then((response) => {
+    //     this.setState({
+    //       imagePath: response.data.imageUrl,
+    //     });
+    //   })
+    //   .then(() => {
+    //     console.log("done");
+    //   })
+    //   .catch((err) => alert(err.message));
+
+    // axios
+    //   .post(BASE_URL + "update/upload", data)
+    //   .then((response) => {
+    //     this.setState({
+    //       imagePath: response.data.imageUrl,
+    //     }); 
+    //   })
+    //   .then(() => {
+    //     console.log("done");
+    //   })
+    //   .catch((err) => alert(err.message));
   
-    return this.state.imagePath;
+     return this.state.imagePath;
   };
 
   handleChange = (event) => {
